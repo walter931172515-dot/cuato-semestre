@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaTech</title>
+<style>
+
+body{margin:0;
+font-family:Arial;
+background:#f1f5f9;
+color:#172554}
+
+header,footer{background:#101b35;
+color:white;
+text-align:center;
+padding:18px}
+
+nav a{color:white;
+    margin:10px;
+    text-decoration:none}
+.hero{text-align:center;
+    padding:40px;
+    background:#2563eb;
+    color:white}
+.productos{display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    padding:20px;
+    max-width:1000px;
+    margin:auto}
+
+article{background:white;
+    padding:20px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 3px 10px #ccc}
+.img{font-size:55px}
+.precio{color:#2563eb;
+    font-weight:bold;
+    font-size:22px}
+button{background:#2563eb;
+color:white;
+border:0;
+padding:10px;
+border-radius:7px;
+cursor:pointer}
+
+
+</style>
+</head>
+<body>
+<header>
+
+    
+<h1>⚡ NovaTech</h1>
+<nav>
+<a href="#inicio">Inicio</a>
+<a href="#productos">Productos</a>
+<a href="#contacto">Contacto</a>
+</nav>
+</header>
+
+<section class="hero" id="inicio">
+<h2>La tecnología que necesitas</h2>
+<p>Computadoras y accesorios al mejor precio.</p>
+<a href="#productos"><button>Ver productos</button></a>
+</section>
+
+<h2 style="text-align:center">Nuestro catálogo</h2>
+<section class="productos" id="productos">
+
+<article>
+<div class="img">💻</div>
+<h3>Laptop NovaBook</h3>
+<p>Intel Core i5, RAM 16 GB</p>
+<p class="precio">S/ 2,899</p>
+<button onclick="location.href='mailto:ventas@novatech.example'">Consultar</button>
+</article>
+
+<article>
+<div class="img">🖥️</div>
+<h3>PC Gamer</h3>
+<p>Ryzen 5, SSD 512 GB</p>
+<p class="precio">S/ 3,450</p>
+<button onclick="location.href='mailto:ventas@novatech.example'">Consultar</button>
+</article>
+
+<article>
+<div class="img">⌨️</div>
+<h3>Teclado RGB</h3>
+<p>Teclado mecánico USB</p>
+<p class="precio">S/ 189</p>
+<button onclick="location.href='mailto:ventas@novatech.example'">Consultar</button>
+</article>
+
+<article>
+<div class="img">🖱️</div>
+<h3>Mouse inalámbrico</h3>
+<p>Diseño cómodo y práctico</p>
+<p class="precio">S/ 59</p>
+<button onclick="location.href='mailto:ventas@novatech.example'">Consultar</button>
+</article>
+
+<article>
+<div class="img">📡</div>
+<h3>Router Wi-Fi</h3>
+<p>Conexión rápida y estable</p>
+<p class="precio">S/ 249</p>
+<button onclick="location.href='mailto:ventas@novatech.example'">Consultar</button>
+</article>
+
+<article>
+<div class="img">💾</div>
+<h3>Disco SSD 1 TB</h3>
+<p>Almacenamiento rápido</p>
+<p class="precio">S/ 299</p>
+<button onclick="location.href='mailto:ventas@novatech.example'">Consultar</button>
+</article>
+
+</section>
+
+<footer id="contacto">
+<h3>Contacto NovaTech</h3>
+<p>Correo: walterventas@gmail.com</p>
+<p>juli, puno</p>
+<p>© 2026 NovaTech</p>
+</footer>
+</body>
+</html>
