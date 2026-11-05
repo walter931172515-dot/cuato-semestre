@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo digital de productos tecnológicos: laptops, computadoras y accesorios.">
+  <title>NovaTech | Catálogo tecnológico</title>
+  <style>
+    :root {
+      --navy: #101b35;
+      --blue: #2563eb;
+      --cyan: #22d3ee;
+      --ink: #172033;
+      --muted: #65718a;
+      --surface: #ffffff;
+      --page: #f4f7fc;
+      --line: #e4eaf4;
+      --radius: 18px;
+      --shadow: 0 14px 35px rgba(16, 27, 53, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, "Segoe UI", Arial, sans-serif; background: var(--page); color: var(--ink); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .topbar { background: var(--navy); color: #dce7ff; font-size: .85rem; padding: 8px 0; }
+    .topbar-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    header { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 82px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-size: 1.3rem; font-weight: 850; letter-spacing: -.04em; color: var(--navy); }
+    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, var(--blue), #06b6d4); border-radius: 13px; font-weight: 900; }
+    .brand span em { color: var(--blue); font-style: normal; }
+    .menu { display: flex; align-items: center; gap: 28px; font-weight: 650; color: #536079; font-size: .94rem; }
+    .menu a:hover { color: var(--blue); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 11px; padding: 12px 19px; background: var(--blue); color: white; font-weight: 750; cursor: pointer; transition: transform .2s, background .2s; }
+    .btn:hover { background: #1749b8; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--blue); border: 1px solid #c9d8ff; }
+    .btn-outline:hover { color: white; }
+    .hero { overflow: hidden; background: radial-gradient(circle at 80% 20%, rgba(34,211,238,.22), transparent 28%), linear-gradient(120deg, #101b35, #172f60 70%, #1e4a80); color: white; }
+    .hero-inner { min-height: 440px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 30px; padding-block: 54px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .13em; font-size: .76rem; font-weight: 800; color: #67e8f9; }
+    .eyebrow::before { content: ""; width: 22px; height: 2px; background: currentColor; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4.35rem); line-height: 1.05; letter-spacing: -.055em; margin: 17px 0; }
+    h1 span { color: #67e8f9; }
+    .hero p { color: #d0ddf5; max-width: 540px; font-size: 1.08rem; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero .btn-outline { border-color: #7188b4; color: white; }
+    .hero-art { display: flex; align-items: center; justify-content: center; min-height: 300px; position: relative; }
+    .glow { position: absolute; width: 290px; height: 290px; border-radius: 50%; background: rgba(34,211,238,.14); filter: blur(6px); }
+    .device { position: relative; width: min(100%, 410px); transform: rotate(-4deg); filter: drop-shadow(0 25px 25px rgba(0,0,0,.25)); }
+    .screen { height: 235px; border: 10px solid #d9e5f7; border-bottom-width: 15px; border-radius: 17px 17px 7px 7px; background: linear-gradient(135deg, #0f1c40, #2463bc 55%, #34d6df); padding: 22px; display: flex; align-items: center; justify-content: center; }
+    .screen-content { width: 100%; height: 100%; border: 1px solid rgba(255,255,255,.35); border-radius: 8px; display: grid; place-items: center; text-align: center; color: white; }
+    .screen-content strong { display: block; font-size: 2.6rem; letter-spacing: -.07em; }
+    .screen-content small { color: #a5f3fc; letter-spacing: .2em; font-size: .7rem; }
+    .base { height: 17px; background: linear-gradient(#d7e1ef, #8b9bb2); width: 112%; margin-left: -6%; border-radius: 2px 2px 14px 14px; }
+    .section { padding: 76px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+    .section-kicker { color: var(--blue); font-weight: 800; text-transform: uppercase; letter-spacing: .13em; font-size: .75rem; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.55rem); letter-spacing: -.045em; line-height: 1.15; margin: 8px 0; color: var(--navy); }
+    .section-head p { margin: 0; color: var(--muted); max-width: 530px; }
+    .products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .product-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 16px rgba(16,27,53,.035); transition: transform .25s, box-shadow .25s, border-color .25s; }
+    .product-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); border-color: #b9ccff; }
+    .product-image { min-height: 190px; display: grid; place-items: center; padding: 22px; background: linear-gradient(135deg, #edf3ff, #f7fbff); }
+    .product-image svg { width: 150px; height: 125px; max-width: 100%; }
+    .product-body { display: flex; flex-direction: column; align-items: flex-start; padding: 21px; flex: 1; }
+    .tag { color: #2454bd; background: #eaf0ff; border-radius: 30px; padding: 4px 10px; font-size: .72rem; font-weight: 800; }
+    .product-card h3 { margin: 12px 0 6px; color: var(--navy); font-size: 1.13rem; }
+    .product-card p { margin: 0 0 14px; color: var(--muted); font-size: .91rem; }
+    .specs { padding-left: 18px; margin: 0 0 18px; color: #526078; font-size: .85rem; }
+    .price-row { margin-top: auto; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 16px; }
+    .price { color: var(--navy); font-size: 1.35rem; font-weight: 850; }
+    .price small { display: block; color: #8993a6; font-size: .7rem; font-weight: 500; }
+    .price-row .btn { padding: 10px 13px; font-size: .86rem; }
+    .benefits { background: #fff; border-block: 1px solid var(--line); }
+    .benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 32px; }
+    .benefit { padding: 25px; border: 1px solid var(--line); border-radius: var(--radius); background: #fbfcff; }
+    .benefit-icon { width: 48px; height: 48px; display: grid; place-items: center; background: #eaf0ff; color: var(--blue); border-radius: 14px; font-size: 1.45rem; }
+    .benefit h3 { margin: 15px 0 6px; color: var(--navy); }
+    .benefit p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .contact-banner { background: linear-gradient(110deg, #1d4ed8, #0e7490); color: white; border-radius: 24px; padding: 35px 38px; display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+    .contact-banner h2 { color: white; margin-top: 0; }
+    .contact-banner p { margin-bottom: 0; color: #dcecff; }
+    .contact-banner .btn { background: white; color: #1749b8; flex-shrink: 0; }
+    footer { background: var(--navy); color: #d4def2; padding: 42px 0 20px; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 36px; padding-bottom: 30px; }
+    footer .brand { color: white; }
+    footer p { color: #aab8d4; max-width: 350px; font-size: .9rem; }
+    footer h3 { margin: 0 0 12px; color: white; font-size: 1rem; }
+    .footer-links { display: grid; gap: 8px; font-size: .9rem; }
+    .footer-links a:hover { color: #67e8f9; }
+    .copyright { border-top: 1px solid #2c3a57; padding-top: 18px; color: #9aa9c6; font-size: .82rem; text-align: center; }
+    @media (max-width: 850px) {
+      .menu { gap: 14px; }
+      .hero-inner { grid-template-columns: 1fr .8fr; }
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-head { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 28px, 1160px); }
+      .topbar-inner { justify-content: center; text-align: center; }
+      .nav { min-height: auto; padding-block: 14px; flex-wrap: wrap; }
+      .menu { order: 2; width: 100%; justify-content: space-between; gap: 8px; font-size: .83rem; }
+      .nav > .btn { padding: 9px 12px; font-size: .82rem; }
+      .hero-inner { grid-template-columns: 1fr; padding-block: 46px; }
+      .hero-art { min-height: 220px; }
+      .screen { height: 170px; }
+      .base { height: 12px; }
+      .section { padding: 55px 0; }
+      .products, .benefit-grid { grid-template-columns: 1fr; }
+      .product-image { min-height: 170px; }
+      .contact-banner { padding: 26px; flex-direction: column; align-items: flex-start; }
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>⚡ Tecnología para impulsar tus ideas</span>
+      <span>Atención: Lun. – Sáb. · 9:00 a. m. – 6:00 p. m.</span>
+    </div>
+  </div>
+  <header>
+    <nav class="container nav" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="NovaTech, inicio">
+        <span class="brand-mark" aria-hidden="true">N</span><span>nova<em>tech</em></span>
+      </a>
+      <div class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <a class="btn" href="#catalogo">Ver catálogo ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">Tu mundo, más conectado</span>
+          <h1>La tecnología que necesitas. <span>El rendimiento que mereces.</span></h1>
+          <p>Descubre laptops, componentes y accesorios seleccionados para estudiar, trabajar y jugar. Encuentra el equipo ideal para tus proyectos.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#catalogo">Explorar productos ↓</a>
+            <a class="btn btn-outline" href="#beneficios">Conoce nuestros beneficios</a>
+          </div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Ilustración decorativa de una laptop tecnológica">
+          <div class="glow"></div>
+          <div class="device">
+            <div class="screen"><div class="screen-content"><div><small>TECNOLOGÍA SIN LÍMITES</small><strong>nova<span style="color:#67e8f9">tech</span></strong><small>INNOVA · CREA · CONECTA</small></div></div></div>
+            <div class="base"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="catalogo">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="section-kicker">Selección tecnológica</span><h2>Catálogo de productos</h2></div>
+          <p>Equipos y accesorios para mejorar tu experiencia digital. Precios referenciales en soles peruanos.</p>
+        </div>
+        <div class="products">
+          <article class="product-card">
+            <div class="product-image" role="img" aria-label="Ilustración de laptop"><svg viewBox="0 0 180 140" aria-hidden="true"><rect x="32" y="15" width="116" height="83" rx="7" fill="#253858"/><rect x="39" y="22" width="102" height="68" rx="3" fill="#3b82f6"/><path d="M39 78 L85 31 L111 58 L141 35 V90 H39Z" fill="#22d3ee" opacity=".8"/><path d="M18 101 H162 L148 116 H32Z" fill="#94a3b8"/><path d="M65 103 H115 L108 109 H72Z" fill="#64748b"/></svg></div>
+            <div class="product-body"><span class="tag">COMPUTACIÓN</span><h3>Laptop NovaBook Pro</h3><p>Potencia y movilidad para tus actividades diarias.</p><ul class="specs"><li>Marca: NovaTech</li><li>Procesador Intel Core i5</li><li>Memoria RAM: 16 GB</li></ul><div class="price-row"><div class="price">S/ 2,899<small>Precio referencial</small></div><a class="btn" href="#contacto">Consultar</a></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image" role="img" aria-label="Ilustración de computadora de escritorio"><svg viewBox="0 0 180 140" aria-hidden="true"><rect x="20" y="16" width="110" height="75" rx="6" fill="#26344f"/><rect x="27" y="23" width="96" height="61" rx="3" fill="#0f766e"/><path d="M27 74 L62 39 L83 61 L105 42 L123 59 V84 H27Z" fill="#5eead4"/><path d="M72 91 V105 M51 106 H93" stroke="#64748b" stroke-width="5" stroke-linecap="round"/><rect x="137" y="23" width="25" height="91" rx="5" fill="#475569"/><circle cx="149" cy="37" r="3" fill="#5eead4"/><rect x="142" y="48" width="15" height="3" rx="1" fill="#94a3b8"/><rect x="142" y="56" width="15" height="3" rx="1" fill="#94a3b8"/></svg></div>
+            <div class="product-body"><span class="tag">COMPUTACIÓN</span><h3>PC Gamer Starter</h3><p>Un equipo equilibrado para trabajar y jugar.</p><ul class="specs"><li>Procesador Ryzen 5</li><li>Memoria RAM: 16 GB</li><li>SSD: 512 GB</li></ul><div class="price-row"><div class="price">S/ 3,450<small>Precio referencial</small></div><a class="btn" href="#contacto">Consultar</a></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image" role="img" aria-label="Ilustración de teclado mecánico"><svg viewBox="0 0 180 140" aria-hidden="true"><g transform="translate(16 35) skewY(-7)"><rect width="148" height="68" rx="8" fill="#334155"/><g fill="#64748b" stroke="#1e293b" stroke-width="2"><rect x="7" y="7" width="18" height="13" rx="2"/><rect x="29" y="7" width="18" height="13" rx="2"/><rect x="51" y="7" width="18" height="13" rx="2"/><rect x="73" y="7" width="18" height="13" rx="2"/><rect x="95" y="7" width="18" height="13" rx="2"/><rect x="117" y="7" width="23" height="13" rx="2"/><rect x="7" y="24" width="22" height="13" rx="2"/><rect x="33" y="24" width="18" height="13" rx="2"/><rect x="55" y="24" width="18" height="13" rx="2"/><rect x="77" y="24" width="18" height="13" rx="2"/><rect x="99" y="24" width="18" height="13" rx="2"/><rect x="121" y="24" width="19" height="13" rx="2"/><rect x="7" y="41" width="18" height="13" rx="2"/><rect x="29" y="41" width="18" height="13" rx="2"/><rect x="51" y="41" width="60" height="13" rx="2"/><rect x="115" y="41" width="25" height="13" rx="2"/></g><path d="M7 64 H140" stroke="#22d3ee" stroke-width="3" stroke-linecap="round"/></g></svg></div>
+            <div class="product-body"><span class="tag">ACCESORIOS</span><h3>Teclado mecánico RGB</h3><p>Precisión y comodidad con iluminación personalizable.</p><ul class="specs"><li>Conexión USB</li><li>Switches mecánicos</li><li>Iluminación RGB</li></ul><div class="price-row"><div class="price">S/ 189<small>Precio referencial</small></div><a class="btn" href="#contacto">Consultar</a></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image" role="img" aria-label="Ilustración de mouse inalámbrico"><svg viewBox="0 0 180 140" aria-hidden="true"><path d="M90 14 C61 14 48 35 48 61 V85 C48 111 64 127 90 127 S132 111 132 85 V61 C132 35 119 14 90 14Z" fill="#26344f"/><path d="M90 15 V51" stroke="#94a3b8" stroke-width="3"/><path d="M90 51 V66" stroke="#22d3ee" stroke-width="5" stroke-linecap="round"/><path d="M52 59 H128" stroke="#475569" stroke-width="2"/><path d="M65 26 Q77 17 88 18" fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round"/></svg></div>
+            <div class="product-body"><span class="tag">ACCESORIOS</span><h3>Mouse inalámbrico Air</h3><p>Diseño ergonómico y movimientos precisos.</p><ul class="specs"><li>Tecnología 2.4 GHz</li><li>Sensor óptico</li><li>Alcance de hasta 10 m</li></ul><div class="price-row"><div class="price">S/ 59<small>Precio referencial</small></div><a class="btn" href="#contacto">Consultar</a></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image" role="img" aria-label="Ilustración de router Wi-Fi"><svg viewBox="0 0 180 140" aria-hidden="true"><path d="M55 59 L45 19 M125 59 L137 19" stroke="#475569" stroke-width="5" stroke-linecap="round"/><rect x="22" y="58" width="136" height="49" rx="12" fill="#334155"/><rect x="31" y="67" width="118" height="31" rx="7" fill="#475569"/><g fill="#5eead4"><circle cx="47" cy="83" r="3"/><circle cx="60" cy="83" r="3"/><circle cx="73" cy="83" r="3"/></g><path d="M77 39 Q90 26 103 39 M68 30 Q90 8 112 30" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round"/></svg></div>
+            <div class="product-body"><span class="tag">CONECTIVIDAD</span><h3>Router Wi-Fi 6 AX1800</h3><p>Conexión estable para tus dispositivos del hogar.</p><ul class="specs"><li>Velocidad hasta 1.8 Gbps</li><li>Doble banda</li><li>Cuatro antenas</li></ul><div class="price-row"><div class="price">S/ 249<small>Precio referencial</small></div><a class="btn" href="#contacto">Consultar</a></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image" role="img" aria-label="Ilustración de unidad SSD"><svg viewBox="0 0 180 140" aria-hidden="true"><rect x="28" y="21" width="124" height="98" rx="10" fill="#334155"/><rect x="36" y="29" width="108" height="82" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="2"/><rect x="50" y="43" width="80" height="49" rx="5" fill="#0f766e"/><text x="90" y="63" fill="#ccfbf1" font-size="12" font-weight="bold" text-anchor="middle">NOVA SSD</text><text x="90" y="80" fill="#99f6e4" font-size="10" text-anchor="middle">1 TB</text><circle cx="43" cy="36" r="3" fill="#94a3b8"/><circle cx="137" cy="36" r="3" fill="#94a3b8"/><circle cx="43" cy="104" r="3" fill="#94a3b8"/><circle cx="137" cy="104" r="3" fill="#94a3b8"/></svg></div>
+            <div class="product-body"><span class="tag">ALMACENAMIENTO</span><h3>Disco SSD NVMe 1 TB</h3><p>Arranques rápidos y espacio para tus archivos.</p><ul class="specs"><li>Capacidad: 1 TB</li><li>Interfaz NVMe M.2</li><li>Alta velocidad de lectura</li></ul><div class="price-row"><div class="price">S/ 299<small>Precio referencial</small></div><a class="btn" href="#contacto">Consultar</a></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section benefits" id="beneficios">
+      <div class="container">
+        <div class="section-head"><div><span class="section-kicker">Compra con confianza</span><h2>¿Por qué elegir NovaTech?</h2></div><p>Queremos ayudarte a elegir tecnología útil, confiable y adecuada para tus necesidades.</p></div>
+        <div class="benefit-grid">
+          <article class="benefit"><div class="benefit-icon" aria-hidden="true">✓</div><h3>Garantía confiable</h3><p>Productos con garantía referencial y orientación para resolver dudas sobre su funcionamiento.</p></article>
+          <article class="benefit"><div class="benefit-icon" aria-hidden="true">⚙</div><h3>Soporte técnico</h3><p>Asesoría para elegir componentes compatibles y aprovechar mejor tus equipos tecnológicos.</p></article>
+          <article class="benefit"><div class="benefit-icon" aria-hidden="true">▦</div><h3>Variedad de productos</h3><p>Encuentra computadoras, periféricos, conectividad y almacenamiento en un solo catálogo.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container">
+        <div class="contact-banner">
+          <div><h2>¿Buscas el equipo ideal?</h2><p>Contáctanos para consultar disponibilidad y recibir orientación.</p></div>
+          <a class="btn" href="mailto:ventas@novatech.example?subject=Consulta%20sobre%20productos">✉ Contactar tienda</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">N</span><span>nova<em>tech</em></span></a><p>Tu catálogo de confianza para descubrir soluciones tecnológicas para el estudio, el trabajo y el entretenimiento.</p></div>
+        <div><h3>Enlaces rápidos</h3><div class="footer-links"><a href="#inicio">Inicio</a><a href="#catalogo">Catálogo de productos</a><a href="#beneficios">Beneficios</a><a href="#contacto">Contacto</a></div></div>
+        <div><h3>Información de contacto</h3><div class="footer-links"><span>✉ walter@gmail.com</span><span>☎ (01) 555-0101</span><span>📍 juli, Puno</span></div></div>
+      </div>
+      <div class="copyright">© 2026 NovaTech · Catálogo demostrativo desarrollado con HTML5 y CSS3.</div>
+    </div>
+  </footer>
+</body>
+</html>
